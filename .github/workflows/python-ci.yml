@@ -21,7 +21,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest
+        pip install -e .        # instala src/ como paquete
+        pip install pytest      # asegura pytest disponible
 
     - name: Run tests
       run: pytest -q
