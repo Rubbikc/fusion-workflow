@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+#ignore a single file
+demofile.txt
+
+#ignore all files within the 'build' folder
+build/
+
+#ignore all files that as the extension '.log'
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+venv/
+.env
+.DS_Store
+=======
 # Python
 __pycache__/
 *.pyc
@@ -40,3 +60,4 @@ htmlcov/
 build/
 dist/
 *.egg-info/
+>>>>>>> develop
