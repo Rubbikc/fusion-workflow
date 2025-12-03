@@ -1,55 +1,130 @@
-# Fusion Workflow
+#  Fusion Workflow
 
-Fusion Workflow es el entorno base para construir pipelines de datos, ETLs, orquestación y automatización CI/CD siguiendo buenas prácticas utilizadas en equipos de Data Engineering de nivel enterprise.
-
-Este repositorio forma parte del Roadmap Profesional 2025–2026 (Data Engineer Senior).
-
----
-
-##  Objetivo del Proyecto
-
-Establecer una base sólida de:
-- Control de versiones (Git + GitHub)
-- Automatización CI/CD con GitHub Actions
-- Estándares de calidad: linters, formateo y pruebas
-- Estructura profesional para futuros módulos ETL, pipelines y servicios
+**Fusion Workflow** is a foundational project designed to establish a fully professional development workflow using Python, Git, pre-commit, and GitHub Actions.
+This repository represents **Stage 0** of the Data Engineering / Data Science Roadmap and serves as the technical base for all future projects.
 
 ---
 
-## Estructura del Proyecto
+##  Project Purpose
 
+This project sets up a modern, production-grade engineering workflow with:
+
+- Git Flow (feature → develop → main)
+- Automated hooks using **pre-commit**
+- A CI/CD pipeline with **GitHub Actions**
+- Unit testing with `pytest`
+- Python linting + formatting standards (Black + pre-commit)
+
+This repository is intended to be a **template** for upcoming projects involving:
+
+- ETL / ELT pipelines
+- Data orchestration (Airflow)
+- Data modeling (dbt)
+- MLOps
+- Machine Learning
+- Data Science
+
+---
+
+#  Project Structure
 fusion-workflow/
-├── .github/workflows/ # Pipelines CI/CD
-│ └── python-ci.yml
-├── .pre-commit-config.yaml # Formateo, linting y validaciones
-├── src/ # Código fuente
-│ └── example.py
-├── tests/ # Pruebas unitarias con pytest
-│ └── test_example.py
-└── README.md # Documentación principal
+│
+├── .github/workflows/
+│ └── python-ci.yml # CI/CD: lint + tests
+│
+├── src/
+│ └── example.py # Example module
+│
+├── tests/
+│ └── test_example.py # Unit testing example
+│
+├── .pre-commit-config.yaml # Pre-commit hooks
+├── requirements.txt # Initial dependencies
+└── README.md
 
 ---
 
-## ⚙️ Dependencias principales
+# Installation & Setup
 
-- Python 3.11+
-- pre-commit
-- pytest
-- GitHub CLI (opcional, recomendado)
-- Rancher Desktop (docker alternative for Mac M1)
-
----
-
-## Hooks pre-commit incluidos
-
-- `trailing-whitespace` → Remueve espacios innecesarios
-- `end-of-file-fixer` → Asegura newline EOF
-- `check-yaml` → Valida YAML
-- `check-added-large-files` → Evita archivos enormes por accidente
-- `black` → Formatea Python bajo PEP8
-
-Instalación:
+### 1. Create virtual environment
 
 ```bash
+python3 -m venv venv
+source venv/bin/activate
+
+### 2. Install dependencies
+pip install -r requirements.txt
+
+### 3. Install pre-commit
 pip install pre-commit
 pre-commit install
+
+###4. Run tests
+pytest -q
+
+---
+
+#Pre-commit Hooks Included
+
+The following hooks run automatically on every commit:
+
+Trim trailing whitespace
+
+Fix end-of-file newline
+
+Check YAML syntax
+
+Detect large files
+
+Black formatter (PEP8 auto-formatting)
+
+Run them manually:
+
+pre-commit run --all-files
+
+
+---
+
+#CI/CD with GitHub Actions
+
+The pipeline python-ci.yml automatically performs:
+
+Install dependencies
+
+Run linting and Black formatting
+
+Run pytest
+
+Report CI status in Pull Requests
+
+Triggered on push or PR to:
+
+develop
+main
+
+
+---
+
+#Unit Testing Example
+
+Example function:
+
+def add(a: int, b: int) -> int:
+    return a + b
+
+
+Associated test:
+
+def test_add():
+    assert add(2, 3) == 5
+
+---
+
+# Git Branching Model (Git Flow)
+feature/* → develop → main
+
+# Example usage
+git checkout -b feature/new-feature
+# work…
+git push -u origin feature/new-feature
+gh pr create --base develop --head feature/new-feature
